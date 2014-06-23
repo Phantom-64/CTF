@@ -2,3 +2,4 @@
 *.class
 
 out/production/CTF/plugin.yml
+.idea/libraries/bukkit_1_7_2_R0_4_20140316_220432_4.xml

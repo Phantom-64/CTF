@@ -10,7 +10,7 @@ public class AsyncPlayerChat implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent e) {
         if (CTF.gm.isPlaying(e.getPlayer())) {
-            e.setFormat(CTF.TAG_GREEN + "§r" + CTF.tm.getPlayerNameInTeamColor(e.getPlayer()) + " §b> §d");
+            e.setFormat(CTF.TAG_GREEN + "§r" + CTF.tm.getPlayerNameInTeamColor(e.getPlayer()) + " §b> §d" + e.getMessage());
         } else {
             e.setFormat("§f" + e.getPlayer().getName() + " §0> §7" + e.getMessage());
         }

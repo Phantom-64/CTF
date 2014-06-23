@@ -1,8 +1,10 @@
 package me.phantom64.capturetheflag;
 
 import me.phantom64.capturetheflag.commands.CommandJoin;
+import me.phantom64.capturetheflag.commands.CommandLeave;
 import me.phantom64.capturetheflag.commands.CommandSetSpawn;
 import me.phantom64.capturetheflag.listeners.*;
+import me.phantom64.capturetheflag.utils.FlagManager;
 import me.phantom64.capturetheflag.utils.GameManager;
 import me.phantom64.capturetheflag.utils.LocationHandler;
 import me.phantom64.capturetheflag.utils.TeamManager;
@@ -22,6 +24,7 @@ public class CTF extends JavaPlugin {
     public static GameManager gm;
     public static LocationHandler lh;
     public static TeamManager tm;
+    public static FlagManager fm;
 
     @Override
     public void onEnable() {
@@ -30,12 +33,15 @@ public class CTF extends JavaPlugin {
         gm = new GameManager(this);
         lh = new LocationHandler(this);
         tm = new TeamManager(this);
-        registerListeners(new AsyncPlayerChat(), new BlockListener(), new FoodLevelChange(), new InventoryClick(), new PlayerDropItem());
+        fm = new FlagManager(this);
+        registerListeners(new AsyncPlayerChat(), new BlockListener(), new FoodLevelChange(),
+                new InventoryClick(), new PlayerDropItem(), new PlayerDeath(), new PlayerInteract());
+        getLogger().info("CTF has been enabled!");
     }
 
     @Override
     public void onDisable() {
-
+        getLogger().info("CTF has been disabled.");
     }
 
     private void registerListeners(Listener... listeners) {
@@ -43,7 +49,7 @@ public class CTF extends JavaPlugin {
             getServer().getPluginManager().registerEvents(listener, this);
             getLogger().info("Event " + listener.getClass().getSimpleName() + " registered.");
         }
-        getLogger().info("All events registered.");
+        getLogger().info("All events registered!");
     }
 
     @Override
@@ -59,6 +65,8 @@ public class CTF extends JavaPlugin {
                     CommandJoin.execute(p, args);
                 } else if (args[0].equalsIgnoreCase("setspawn")) {
                     CommandSetSpawn.execute(p, args);
+                } else if (args[0].equalsIgnoreCase("leave")) {
+                    CommandLeave.execute(p, args);
                 }
             } else {
                 sender.sendMessage(ChatColor.RED + "Only players can use this command.");

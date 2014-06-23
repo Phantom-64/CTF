@@ -2,6 +2,7 @@ package me.phantom64.capturetheflag.utils;
 
 import me.phantom64.capturetheflag.CTF;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -20,12 +21,14 @@ public class GameManager {
     public void addPlayerToGame(Player p, Team team) {
         playing.add(p);
         CTF.tm.setTeam(p, team);
+        p.setGameMode(GameMode.ADVENTURE);
         CTF.lh.teleportPlayerToArena(p, team);
     }
 
     public void removePlayerFromGame(Player p, Team team) {
         playing.remove(p);
         CTF.tm.removePlayerFromTeam(p, team);
+        p.setGameMode(GameMode.SURVIVAL);
         CTF.lh.teleportPlayerFromArena(p);
     }
 

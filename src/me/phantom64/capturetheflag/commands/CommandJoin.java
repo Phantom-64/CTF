@@ -11,11 +11,15 @@ public class CommandJoin {
         if (a.length!=1) {
             p.sendMessage(CTF.TAG_BLUE + "Usage: /ctf join");
         } else {
-            Team team = CTF.tm.getValidTeam();
-            CTF.gm.addPlayerToGame(p, team);
-            p.sendMessage(CTF.TAG_GREEN + "You recieved kit §cRed§a.");
-            CTF.tm.givePlayerKit(p, team);
-            CTF.gm.broadcastMessageInGame(CTF.TAG_GREEN + "§r" +  CTF.tm.getPlayerNameInTeamColor(p) + " §ajoined the game!");
+            if (!CTF.gm.isPlaying(p)) {
+                Team team = CTF.tm.getValidTeam();
+                CTF.gm.addPlayerToGame(p, team);
+                p.sendMessage(CTF.TAG_GREEN + "You recieved kit §cRed§a.");
+                CTF.tm.givePlayerKit(p, team);
+                CTF.gm.broadcastMessageInGame(CTF.TAG_GREEN + "§r" +  CTF.tm.getPlayerNameInTeamColor(p) + " §ajoined the game!");
+            } else {
+                p.sendMessage(CTF.TAG_BLUE + "You are already in the game!");
+            }
         }
 
     }

@@ -1,0 +1,10 @@
+name: CTF
+main: me.phantom64.capturetheflag.CTF
+version: 1.0
+description: CTF plugin.
+author: Phantom_64
+
+commands:
+   ctf:
+     description: Main command for the CTF plugin.
+     usage: /<command>

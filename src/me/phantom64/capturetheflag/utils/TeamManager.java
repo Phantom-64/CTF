@@ -26,14 +26,26 @@ public class TeamManager {
 
     public void setTeam(Player p, Team team) {
         teams.put(p, team);
-        if (team==Team.RED) red.add(p);
-        else if (team==Team.BLUE) blue.add(p);
+        if (team==Team.RED) {
+            red.add(p);
+            CTF.sm.getScoreBoard().getTeam("red").addPlayer(p);
+        }
+        else if (team==Team.BLUE) {
+            blue.add(p);
+            CTF.sm.getScoreBoard().getTeam("blue").addPlayer(p);
+        }
     }
 
     public void removePlayerFromTeam(Player p, Team team) {
         teams.remove(p);
-        if (team==Team.RED) red.remove(p);
-        else if (team==Team.BLUE) blue.remove(p);
+        if (team==Team.RED) {
+            red.remove(p);
+            CTF.sm.getScoreBoard().getTeam("red").removePlayer(p);
+        }
+        else if (team==Team.BLUE) {
+            blue.remove(p);
+            CTF.sm.getScoreBoard().getTeam("blue").removePlayer(p);
+        }
     }
 
     public Team getTeam(Player p) {
@@ -49,8 +61,7 @@ public class TeamManager {
         } else if (red.size()<blue.size()) {
             return Team.RED;
         }
-
-        return Team.RED;
+        return Team.BLUE;
     }
 
     public String getPlayerNameInTeamColor(Player p) {
@@ -73,8 +84,14 @@ public class TeamManager {
         inv.addItem(new ItemStack(Material.IRON_SWORD, 1));
         inv.addItem(new ItemStack(Material.BOW, 1));
         inv.addItem(new ItemStack(Material.ARROW, 32));
-        if (team==Team.RED) inv.setHelmet(new ItemStack(Material.REDSTONE_BLOCK, 1));
-        else if (team==Team.BLUE) inv.setHelmet(new ItemStack(Material.LAPIS_BLOCK, 1));
+        if (team==Team.RED) {
+            inv.setHelmet(new ItemStack(Material.REDSTONE_BLOCK, 1));
+            p.sendMessage(CTF.TAG_GREEN + "You received kit §cRed§a.");
+        }
+        else if (team==Team.BLUE) {
+            inv.setHelmet(new ItemStack(Material.LAPIS_BLOCK, 1));
+            p.sendMessage(CTF.TAG_GREEN + "You received kit §9Blue§a.");
+        }
     }
 
 }

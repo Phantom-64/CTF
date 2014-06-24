@@ -14,8 +14,8 @@ public class CommandJoin {
             if (!CTF.gm.isPlaying(p)) {
                 Team team = CTF.tm.getValidTeam();
                 CTF.gm.addPlayerToGame(p, team);
-                p.sendMessage(CTF.TAG_GREEN + "You recieved kit §cRed§a.");
                 CTF.tm.givePlayerKit(p, team);
+                p.setScoreboard(CTF.sm.getScoreBoard());
                 CTF.gm.broadcastMessageInGame(CTF.TAG_GREEN + "§r" +  CTF.tm.getPlayerNameInTeamColor(p) + " §ajoined the game!");
             } else {
                 p.sendMessage(CTF.TAG_BLUE + "You are already in the game!");

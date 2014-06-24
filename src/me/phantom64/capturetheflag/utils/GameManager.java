@@ -12,6 +12,10 @@ public class GameManager {
 
     public static List<Player> playing = new ArrayList<Player>();
 
+    public List<Player> getPlaying() {
+        return playing;
+    }
+
     private CTF plugin;
 
     public GameManager(CTF plugin) {

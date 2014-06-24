@@ -150,9 +150,7 @@ public class CTF extends JavaPlugin implements Listener {
         FireworkEffect effect = FireworkEffect.builder().flicker(r.nextBoolean()).withColor(c1).withFade(c2).with(type).trail(r.nextBoolean()).build();
 
         fwm.addEffect(effect);
-
         fwm.setPower(1);
-
         fw.setFireworkMeta(fwm);
     }
 

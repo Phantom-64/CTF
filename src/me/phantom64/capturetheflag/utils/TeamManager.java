@@ -61,7 +61,7 @@ public class TeamManager {
         } else if (red.size()<blue.size()) {
             return Team.RED;
         }
-        return Team.BLUE;
+        return Team.RED;
     }
 
     public String getPlayerNameInTeamColor(Player p) {
@@ -82,6 +82,7 @@ public class TeamManager {
         inv.setLeggings(new ItemStack(Material.IRON_LEGGINGS, 1));
         inv.setBoots(new ItemStack(Material.IRON_BOOTS, 1));
         inv.addItem(new ItemStack(Material.IRON_SWORD, 1));
+        inv.addItem(new ItemStack(Material.FISHING_ROD, 1));
         inv.addItem(new ItemStack(Material.BOW, 1));
         inv.addItem(new ItemStack(Material.ARROW, 32));
         if (team==Team.RED) {

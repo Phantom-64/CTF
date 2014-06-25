@@ -19,19 +19,21 @@ public class PlayerDeath implements Listener {
         if (p.getKiller() instanceof Player) {
             Player killer = p.getKiller();
             if (CTF.gm.isPlaying(p)) {
+                p.setFireTicks(0);
                 p.setHealth(20.0);
                 CTF.lh.teleportPlayerToTeamSpawn(p, CTF.tm.getTeam(p));
                 e.setDeathMessage("");
-                CTF.gm.broadcastMessageInGame(CTF.TAG_BLUE + "§r " + CTF.tm.getPlayerNameInTeamColor(p)
+                CTF.gm.broadcastMessageInGame(CTF.TAG_BLUE + CTF.tm.getPlayerNameInTeamColor(p)
                         + " §2was killed by §r" + CTF.tm.getPlayerNameInTeamColor(killer) + "§2!");
                 p.setGameMode(GameMode.ADVENTURE);
             }
         } else {
             if (CTF.gm.isPlaying(p)) {
+                p.setFireTicks(0);
                 p.setHealth(20.0);
                 CTF.lh.teleportPlayerToTeamSpawn(p, CTF.tm.getTeam(p));
                 e.setDeathMessage("");
-                CTF.gm.broadcastMessageInGame(CTF.TAG_BLUE + "§r " + CTF.tm.getPlayerNameInTeamColor(p)
+                CTF.gm.broadcastMessageInGame(CTF.TAG_BLUE + CTF.tm.getPlayerNameInTeamColor(p)
                         + " §2died!");
                 p.setGameMode(GameMode.ADVENTURE);
             }

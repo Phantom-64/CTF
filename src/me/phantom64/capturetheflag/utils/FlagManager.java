@@ -50,9 +50,9 @@ public class FlagManager {
     public void setRedFlagSpawn(Location redFlagSpawn) {
         this.redFlagSpawn = redFlagSpawn;
         plugin.getConfig().set("FlagSpawns.red.world", redFlagSpawn.getWorld().getName());
-        plugin.getConfig().set("FlagSpawns.red.x", redFlagSpawn.getX());
-        plugin.getConfig().set("FlagSpawns.red.y", redFlagSpawn.getY());
-        plugin.getConfig().set("FlagSpawns.red.z", redFlagSpawn.getZ());
+        plugin.getConfig().set("FlagSpawns.red.x", redFlagSpawn.getBlockX());
+        plugin.getConfig().set("FlagSpawns.red.y", redFlagSpawn.getBlockY());
+        plugin.getConfig().set("FlagSpawns.red.z", redFlagSpawn.getBlockZ());
         plugin.saveConfig();
     }
 
@@ -66,9 +66,9 @@ public class FlagManager {
     public void setBlueFlagSpawn(Location blueFlagSpawn) {
         this.blueFlagSpawn = blueFlagSpawn;
         plugin.getConfig().set("FlagSpawns.blue.world", blueFlagSpawn.getWorld().getName());
-        plugin.getConfig().set("FlagSpawns.blue.x", blueFlagSpawn.getX());
-        plugin.getConfig().set("FlagSpawns.blue.y", blueFlagSpawn.getY());
-        plugin.getConfig().set("FlagSpawns.blue.z", blueFlagSpawn.getZ());
+        plugin.getConfig().set("FlagSpawns.blue.x", blueFlagSpawn.getBlockX());
+        plugin.getConfig().set("FlagSpawns.blue.y", blueFlagSpawn.getBlockY());
+        plugin.getConfig().set("FlagSpawns.blue.z", blueFlagSpawn.getBlockZ());
         plugin.saveConfig();
     }
 }

@@ -16,6 +16,8 @@ public class CommandJoin {
                 CTF.gm.addPlayerToGame(p, team);
                 CTF.tm.givePlayerKit(p, team);
                 p.setScoreboard(CTF.sm.getScoreBoard());
+                p.setHealth(20.0);
+                p.setFoodLevel(20);
                 CTF.gm.broadcastMessageInGame(CTF.TAG_GREEN + "§r" +  CTF.tm.getPlayerNameInTeamColor(p) + " §ajoined the game!");
             } else {
                 p.sendMessage(CTF.TAG_BLUE + "You are already in the game!");

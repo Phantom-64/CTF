@@ -44,6 +44,11 @@ public class PlayerQuit implements Listener {
             e.setQuitMessage("");
             CTF.gm.broadcastMessageInGame(CTF.TAG_RED + "§r" + CTF.tm.getPlayerNameInTeamColor(p) + " §cleft the game. ");
             CTF.gm.removePlayerFromGame(p, CTF.tm.getTeam(p));
+            if (CTF.gm.getPlaying().size()==0) {
+                CTF.sm.setBlueCaptures(0);
+                CTF.sm.setRedCaptures(0);
+                CTF.sm.updateScoreboard();
+            }
         }
     }
 

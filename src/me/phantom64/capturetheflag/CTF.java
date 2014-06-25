@@ -55,7 +55,7 @@ public class CTF extends JavaPlugin implements Listener {
         sm.updateScoreboard();
         registerListeners(this, new AsyncPlayerChat(), new BlockListener(), new FoodLevelChange(),
                 new InventoryClick(), new PlayerDropItem(), new PlayerDeath(), new PlayerJoin(),
-                new PlayerQuit());
+                new PlayerQuit(), new EntityDamage(), new SignListener());
         getLogger().info("CTF has been enabled!");
         getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
             @Override
@@ -166,7 +166,7 @@ public class CTF extends JavaPlugin implements Listener {
                                 if (CTF.tm.getTeam(p)!=Team.RED) {
                                     CTF.fm.setFlag(p, Team.RED);
                                     b.setType(Material.AIR);
-                                    p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 999999999, 2));
+                                    p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 999999999, 1));
                                     CTF.gm.broadcastMessageInGame(CTF.TAG_BLUE + "§r" + CTF.tm.getPlayerNameInTeamColor(p)
                                             + " §2picked up the §cRed flag§2!");
                                 } else {
@@ -180,7 +180,7 @@ public class CTF extends JavaPlugin implements Listener {
                                         CTF.sm.addRedCaptures(1);
                                         CTF.sm.updateScoreboard();
                                         CTF.gm.broadcastMessageInGame(CTF.TAG_BLUE + CTF.tm.getPlayerNameInTeamColor(p)
-                                                + " §9captured the flag for their team!");
+                                                + " §2captured the flag for their team!");
                                         if (CTF.sm.getRedCaptures()>=getConfig().getInt("captures_to_win")) {
                                             CTF.gm.broadcastMessageInGame(CTF.TAG_GREEN + "§cTeam Red §awon the game!");
                                             for (Player pl : p.getServer().getOnlinePlayers()) {
@@ -188,6 +188,8 @@ public class CTF extends JavaPlugin implements Listener {
                                                     for (PotionEffect effect : pl.getActivePotionEffects()) {
                                                         pl.removePotionEffect(effect.getType());
                                                     }
+                                                    pl.setHealth(20.0);
+                                                    pl.setFireTicks(0);
                                                     CTF.lh.teleportPlayerToTeamSpawn(pl, CTF.tm.getTeam(pl));
                                                     shootFirework(CTF.lh.getRedSpawn());
                                                     sm.setRedCaptures(0);
@@ -211,9 +213,9 @@ public class CTF extends JavaPlugin implements Listener {
                                 if (CTF.tm.getTeam(p)!=Team.BLUE) {
                                     CTF.fm.setFlag(p, Team.BLUE);
                                     b.setType(Material.AIR);
-                                    p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 999999999, 2));
+                                    p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 999999999, 1));
                                     CTF.gm.broadcastMessageInGame(CTF.TAG_BLUE + "§r" + CTF.tm.getPlayerNameInTeamColor(p)
-                                            + " §2picked up §9the Blue flag§2!");
+                                            + " §2picked up the §9Blue flag§2!");
                                 } else {
                                     if (CTF.fm.hasFlag(p)) {
                                         CTF.fm.removeFlag(p);
@@ -233,6 +235,8 @@ public class CTF extends JavaPlugin implements Listener {
                                                     for (PotionEffect effect : pl.getActivePotionEffects()) {
                                                         pl.removePotionEffect(effect.getType());
                                                     }
+                                                    pl.setHealth(20.0);
+                                                    pl.setFireTicks(0);
                                                     CTF.lh.teleportPlayerToTeamSpawn(pl, CTF.tm.getTeam(pl));
                                                     shootFirework(CTF.lh.getBlueSpawn());
                                                     sm.setRedCaptures(0);

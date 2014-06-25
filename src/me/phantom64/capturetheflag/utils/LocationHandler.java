@@ -27,9 +27,9 @@ public class LocationHandler {
     public void setRedSpawn(Location redSpawn) {
         this.redSpawn = redSpawn;
         plugin.getConfig().set("Spawns.red.world", redSpawn.getWorld().getName());
-        plugin.getConfig().set("Spawns.red.x", redSpawn.getX());
-        plugin.getConfig().set("Spawns.red.y", redSpawn.getY());
-        plugin.getConfig().set("Spawns.red.z", redSpawn.getZ());
+        plugin.getConfig().set("Spawns.red.x", redSpawn.getBlockX());
+        plugin.getConfig().set("Spawns.red.y", redSpawn.getBlockY());
+        plugin.getConfig().set("Spawns.red.z", redSpawn.getBlockZ());
         plugin.saveConfig();
     }
 
@@ -43,9 +43,9 @@ public class LocationHandler {
     public void setBlueSpawn(Location blueSpawn) {
         this.blueSpawn = blueSpawn;
         plugin.getConfig().set("Spawns.blue.world", blueSpawn.getWorld().getName());
-        plugin.getConfig().set("Spawns.blue.x", blueSpawn.getX());
-        plugin.getConfig().set("Spawns.blue.y", blueSpawn.getY());
-        plugin.getConfig().set("Spawns.blue.z", blueSpawn.getZ());
+        plugin.getConfig().set("Spawns.blue.x", blueSpawn.getBlockX());
+        plugin.getConfig().set("Spawns.blue.y", blueSpawn.getBlockY());
+        plugin.getConfig().set("Spawns.blue.z", blueSpawn.getBlockZ());
         plugin.saveConfig();
     }
 
@@ -59,9 +59,9 @@ public class LocationHandler {
     public void setExitSpawn(Location exitSpawn) {
         this.exitSpawn = exitSpawn;
         plugin.getConfig().set("Spawns.exit.world", exitSpawn.getWorld().getName());
-        plugin.getConfig().set("Spawns.exit.x", exitSpawn.getX());
-        plugin.getConfig().set("Spawns.exit.y", exitSpawn.getY());
-        plugin.getConfig().set("Spawns.exit.z", exitSpawn.getZ());
+        plugin.getConfig().set("Spawns.exit.x", exitSpawn.getBlockX());
+        plugin.getConfig().set("Spawns.exit.y", exitSpawn.getBlockY());
+        plugin.getConfig().set("Spawns.exit.z", exitSpawn.getBlockZ());
         plugin.saveConfig();
     }
 

@@ -44,6 +44,11 @@ public class CommandLeave {
                 p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
                 CTF.gm.broadcastMessageInGame(CTF.TAG_BLUE + "§r" + CTF.tm.getPlayerNameInTeamColor(p) + " §cleft the game. ");
                 CTF.gm.removePlayerFromGame(p, CTF.tm.getTeam(p));
+                if (CTF.gm.getPlaying().size()==0) {
+                    CTF.sm.setBlueCaptures(0);
+                    CTF.sm.setRedCaptures(0);
+                    CTF.sm.updateScoreboard();
+                }
             } else {
                 p.sendMessage(CTF.TAG_BLUE + "You are not in the game!");
             }
